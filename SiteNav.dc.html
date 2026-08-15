@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; background: #dedede; }
+    a { color: #3366cc; text-decoration: none; }
+    a:hover { color: #1a4499; text-decoration: underline; }
+    [lang="da"] { display: none !important; }
+    body[data-lang="da"] [lang="da"] { display: revert !important; }
+    body[data-lang="da"] [lang="en"] { display: none !important; }
+  </style>
+</helmet>
+<div style="width: 100%; font-family: 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, sans-serif;">
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 18px 30px 10px;">
+    <a href="Welcome.dc.html"><img src="assets/Welcome_files/BSLogo2%20kopi.gif" alt="Birger Sulsbrück logo" style="height: 60px; width: auto; display: block;"></a>
+    <nav style="display: flex; gap: 4px 14px; flex-wrap: wrap; align-items: center; font-size: 11px; letter-spacing: 0.06em; color: #666;">
+      <a href="Welcome.dc.html" style="color: #666;"><span lang="en">WELCOME</span><span lang="da">VELKOMMEN</span></a>
+      <a href="News.dc.html" style="color: #666;"><span lang="en">NEWS</span><span lang="da">NYHEDER</span></a>
+      <a href="Info.dc.html" style="color: #666;">INFO</a>
+      <a href="Seminars.dc.html" style="color: #666;"><span lang="en">SEMINARS</span><span lang="da">SEMINARER</span></a>
+      <a href="Books_CDs.dc.html" style="color: #666;"><span lang="en">BOOKS AND CD'S</span><span lang="da">BØGER OG CD'ER</span></a>
+      <a href="Download.dc.html" style="color: #666;">DOWNLOAD</a>
+      <a href="Photos.dc.html" style="color: #666;"><span lang="en">PHOTOS</span><span lang="da">FOTOS</span></a>
+      <a href="Reviews.dc.html" style="color: #666;"><span lang="en">REVIEWS</span><span lang="da">ANMELDELSER</span></a>
+      <button onClick="{{ toggleLang }}" style="margin-left: 6px; min-width: 64px; padding: 3px 10px; border: 1px solid #bbb; border-radius: 3px; background: #f4f4f4; font: inherit; font-size: 10px; letter-spacing: 0.06em; color: #555; cursor: pointer;">{{ langLabel }}</button>
+    </nav>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'en' };
+  componentDidMount() {
+    const l = localStorage.getItem('bs_lang') || 'en';
+    document.body.dataset.lang = l;
+    if (l !== this.state.lang) this.setState({ lang: l });
+  }
+  renderVals() {
+    return {
+      langLabel: this.state.lang === 'en' ? 'DANSK' : 'ENGLISH',
+      toggleLang: () => {
+        const next = this.state.lang === 'en' ? 'da' : 'en';
+        localStorage.setItem('bs_lang', next);
+        document.body.dataset.lang = next;
+        this.setState({ lang: next });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
