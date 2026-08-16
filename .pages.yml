@@ -1,0 +1,94 @@
+media:
+  input: assets
+  output: assets
+
+content:
+  - name: photos
+    label: Fotogalleri
+    type: file
+    path: photo-captions.json
+    format: json
+    fields:
+      - name: photos
+        label: Fotos
+        type: object
+        list: true
+        fields:
+          - name: image
+            label: Billede
+            type: image
+          - name: title
+            label: Billedtekst
+            type: string
+
+  - name: welcome
+    label: Forside (Welcome)
+    type: file
+    path: Welcome.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html
+
+  - name: news
+    label: Nyheder (News)
+    type: file
+    path: News.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html
+
+  - name: info
+    label: Info
+    type: file
+    path: Info.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html
+
+  - name: seminars
+    label: Seminarer
+    type: file
+    path: Seminars.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html
+
+  - name: books
+    label: Bøger og CD'er
+    type: file
+    path: Books_CDs.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html
+
+  - name: reviews
+    label: Anmeldelser
+    type: file
+    path: Reviews.dc.html
+    format: code
+    fields:
+      - name: body
+        label: HTML
+        type: code
+        options:
+          language: html

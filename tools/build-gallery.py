@@ -2,12 +2,12 @@
 """Rebuilds the photo grid in Photos.dc.html from photo-captions.json."""
 import html, io, json
 
-items = json.load(io.open("photo-captions.json", encoding="utf-8"))
+items = json.load(io.open("photo-captions.json", encoding="utf-8"))["photos"]
 
 cells = []
-for file, title in items:
-    src = "assets/Photos_files/originals/" + file.replace("&", "%26").replace(" ", "%20")
-    t = html.escape(title, quote=True)
+for item in items:
+    src = item["image"].replace("&", "%26").replace(" ", "%20")
+    t = html.escape(item["title"], quote=True)
     cells.append(
         f'''        <figure style="margin: 0;">
           <a href="{src}" target="_blank" rel="noopener"><img src="{src}" alt="{t}" loading="lazy" style="width: 100%; aspect-ratio: 1; object-fit: cover; display: block;"></a>
